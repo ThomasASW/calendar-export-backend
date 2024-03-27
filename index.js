@@ -42,6 +42,7 @@ async function exportMultiple(req, res) {
   for await (const doc of cursor) {
     events.push(doc);
   }
+  console.log(events);
   let eventsToBeExported = [];
   for (let i = 0; i < events.length; i++) {
     const event = events[i];
@@ -49,14 +50,14 @@ async function exportMultiple(req, res) {
     let end = new Date(event.end);
     event.start = [
       start.getFullYear(),
-      start.getMonth(),
+      start.getMonth() + 1,
       start.getDate(),
       start.getHours(),
       start.getMinutes(),
     ];
     event.end = [
       end.getFullYear(),
-      end.getMonth(),
+      end.getMonth() + 1,
       end.getDate(),
       end.getHours(),
       end.getMinutes(),
@@ -94,14 +95,14 @@ async function getCalendarExport(req, res) {
   let end = new Date(event.end);
   event.start = [
     start.getFullYear(),
-    start.getMonth(),
+    start.getMonth() + 1,
     start.getDate(),
     start.getHours(),
     start.getMinutes(),
   ];
   event.end = [
     end.getFullYear(),
-    end.getMonth(),
+    end.getMonth() + 1,
     end.getDate(),
     end.getHours(),
     end.getMinutes(),
